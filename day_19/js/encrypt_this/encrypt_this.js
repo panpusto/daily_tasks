@@ -20,10 +20,10 @@ const encryptThis = (text) => {
     return text
         .split(' ')
         .map(elem => {
-            if (elem.length === 1) return elem.fromCharCode(0);
-            if (elem.length === 2) return `${elem[0].fromCharCode(0)}${elem[1]}`;
-            if (elem.length === 3) return `${elem[0].fromCharCode(0)}${elem.slice(-1)}${elem[1]}`;
-            if (elem.length > 3) return `${elem[0].fromCharCode(0)}${elem.slice(-1)}${elem.slice(2, -1)}${elem[1]}`
+            if (elem.length === 1) return elem.charCodeAt(0);
+            if (elem.length === 2) return `${elem[0].charCodeAt(0)}${elem[1]}`;
+            if (elem.length === 3) return `${elem[0].charCodeAt(0)}${elem.slice(-1)}${elem[1]}`;
+            if (elem.length > 3) return `${elem[0].charCodeAt(0)}${elem.slice(-1)}${elem.slice(2, -1)}${elem[1]}`
         })
         .join(' ');
 };
@@ -42,7 +42,13 @@ const encryptThis = (text) => {
 // decipherThis('82yade 115te 103o'); // 'Ready set go'
 
 const decipherThis = (str) => {
-    return
+    return str
+        .split(' ')
+        .map(elem => elem
+            .replace(/^\d+/, num => String.fromCharCode(num))
+            .replace(/^(.)(.)(.*)(.)$/, '$1$4$3$2')
+        )
+        .join(' ')
 };
 
 
