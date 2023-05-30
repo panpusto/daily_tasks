@@ -1,5 +1,7 @@
 .idea/
-
+.DS_Store
 /node_modules
 package-lock.json
 package.json
+/day_43/extract_multiple_subzips_with_pwd/__pycache__
+day_43/.DS_Store
