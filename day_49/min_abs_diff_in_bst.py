@@ -37,17 +37,16 @@ class Solution(object):
         min_diff = float('inf')
 
         while stack or current:
-            while current:
+            if current:
                 stack.append(current)
                 current = current.left
-            current = stack.pop()
+            else:
+                current = stack.pop()
+                if prev_val is not None:
+                    min_diff = min(min_diff, abs(current.val - prev_val))
+                prev_val = current.val
+                current = current.right
 
-            if prev_val is not None:
-                min_diff = min(min_diff, abs(current.val - prev_val))
-            
-            prev_val = current.val
-            current = current.right
-        
         return min_diff
 
 # tests
