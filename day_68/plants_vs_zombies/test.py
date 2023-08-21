@@ -1,3 +1,8 @@
+import unittest
+
+from plants_vs_zombies import count_moves
+
+
 test_cases = [
 	[
 		[
@@ -42,3 +47,15 @@ test_cases = [
 			'1         '],
 		[[0,2,16],[1,3,19],[2,0,18],[4,2,21],[6,3,20],[7,5,17],[8,1,21],[8,2,11],[9,0,10],[11,4,23],[12,1,15],[13,3,22]]]
 ]
+
+example_solutions = [10, 12, 20, 19, None]
+
+
+class PlantsVsZombiesTests(unittest.TestCase):
+    def test_count_moves_to_penetrates_defenses(self):
+        for test in range(len(test_cases)):
+            self.assertEqual(count_moves(test_cases[test][0], test_cases[test][1]), example_solutions[test])
+
+
+if __name__ == '__main__':
+    unittest.main()
